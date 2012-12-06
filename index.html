@@ -33,17 +33,43 @@
 
         $.getJSON("polygons.json", function(json) {
             $.each(json, function(index, value) { 
-              paper.path(value['path']).attr(value['style']);
+              tmp = paper.path(value['path']).attr(value['style']);
+              $(tmp.node).qtip({ 
+                          content: { text: value['id'] },
+                          style: {
+                            name: 'dark'
+                          },
+                          position: {
+                              corner: {
+                                  target: 'topRight',
+                                  tooltip: 'bottomLeft'
+                              }
+                          }
+                      });
             });
         });
-        
+
         $.getJSON("paths.json", function(json) {
             $.each(json, function(index, value) { 
-              paper.path(value['path']).attr(value['style']);;
+              tmp = paper.path(value['path']).attr(value['style']);
+              $(tmp.node).qtip({ 
+                    content: { text: value['id'] },
+                    style: {
+                            name: 'dark'                    },
+                    position: {
+                        corner: {
+                            target: 'topRight',
+                            tooltip: 'bottomLeft'
+                        }
+                    }
+                });
+
             });
-        });        
-        
-      });  
+
+        });
+
+
+      }); 
     </script>
   </body>
 </html>
